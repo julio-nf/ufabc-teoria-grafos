@@ -16,7 +16,8 @@ class Graph(object):
     else:
       self.__graph_dict[u] = v
 
-  def search_v(self, s):
+
+  def search_v(self, s, w):
     vis = []
     pred = []
 
@@ -28,19 +29,20 @@ class Graph(object):
 
     fila = []
     fila.append(s)
-    print(fila)
 
     while len(fila) > 0:
       u = fila.pop()
 
       for v in self.__graph_dict[u]:
-        if vis[v] == False:
+        if v == w:
+          return True
+        elif vis[v] == False:
           vis[v] = True
           pred[v] = u
           fila.append(v)
-
-    print(f'VIS: {vis}')
-    print(f'PRED: {pred}')
+    
+    return False
+          
 
 
 if __name__ == "__main__":
@@ -61,3 +63,8 @@ if __name__ == "__main__":
 
   graph.insert_edge((7,8))
   graph.search_v(7)
+
+  contador_voos = 0
+  for v in g:
+    if 
+    
