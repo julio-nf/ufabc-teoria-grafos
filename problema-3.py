@@ -6,7 +6,7 @@
 # 
 #
 # Descrição do Programa:
-# Meu programa usa uma classe de apoio Graph, que recebe uma dict no construtor
+# Meu programa usa uma classe de apoio Graph que recebe uma dict no construtor
 # aonde as chaves são os vértices do grafo e os valores das chaves são listas
 # que representam as arestas a qual o vértice está conectado.
 # Ao iniciar o programa precisamos inserir as entradas n (no de aeroportos),
@@ -89,19 +89,19 @@ class Graph(object):
 
 if __name__ == "__main__":
 
-  # Recebe o inteiro do número de aeroportos e transforma em uma lista contendo o range
-  # do tamanho do int passado
+  # Recebe o inteiro do número de aeroportos e transforma em uma lista
+  # contendo o range do tamanho do int passado
   n_airports = list(range(int(input())))
 
-  # Inicia o grafo usando uma dict aonde as chaves vem da lista de aeroportos do comando
-  # anterior, inicialmente com valores vazios em todas as chaves
+  # Inicia o grafo usando uma dict aonde as chaves vem da lista de aeroportos
+  # do comando anterior, inicialmente com valores vazios em todas as chaves
   graph = Graph(dict.fromkeys(n_airports))
 
   # Recebe o número de voos diretos operados pela Pingu
   n_direct_flights = int(input())
 
-  # Para cada voo direto, recebe a entrada dos vertices separado por espaço (u v)
-  # e insere a aresta no grafo
+  # Para cada voo direto, recebe a entrada dos vertices separado por espaço
+  # (u v) e insere a aresta no grafo
   for x in range(n_direct_flights):
     a, b = map(int, input().split())
     graph.insert_edge((a, b))
