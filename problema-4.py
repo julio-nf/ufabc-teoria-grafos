@@ -96,8 +96,11 @@ class Graph(object):
       if not self._vis[v]:
         self._dfs_search_corte(v)
 
-    # Retornando a lista com os vertices de corte
+    # Removendo duplicatas e ordenando a lista de vertices de corte
+    self._vertices_corte = list(dict.fromkeys(self._vertices_corte))
     self._vertices_corte.sort()
+
+    # Retornando a lista
     return self._vertices_corte
 
 
@@ -173,7 +176,9 @@ if __name__ == "__main__":
   # Chama o método que procura os vértices de corte e guarda a lista
   vertices_corte = graph.search_vertices_corte()
 
-  # Caso o retorno não seja vazio, imprimimos a quantidade e os v de corte
+  # Imprimindo a quantidade de terminais alvo (vertices de corte)
+  print(f'# de alvos possiveis: {len(vertices_corte)}')
+
+  # Caso a quantidade seja maior que zero, imprimimos cada terminal alvo
   if len(vertices_corte) > 0:
-    print(f'# de alvos possiveis: {len(vertices_corte)}')
     print(*vertices_corte, sep="\n")
