@@ -44,7 +44,7 @@ class Arc(object):
   def __init__(self, x, y, w):
     self.tail = x
     self.head = y
-    self.weigth = w
+    self.weight = w
 
 
 class CustomKey(object):
@@ -152,8 +152,8 @@ class Dijkstra(object):
     u = int(a.tail)
     v = int(a.head)
 
-    if self.cost[v] > self.cost[u] + a.weigth:
-      self.cost[v] = self.cost[u] + a.weigth
+    if self.cost[v] > self.cost[u] + a.weight:
+      self.cost[v] = self.cost[u] + a.weight
       self.pred[v] = u
       self.queue.change_key(v, self.cost[v])
 
