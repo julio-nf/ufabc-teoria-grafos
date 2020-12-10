@@ -69,7 +69,7 @@ class CustomHeap(object):
     return (2*i)+1
 
   def up_correct(self, i):
-    while i > 1 and self.heap[self.father(i)].weight > self.heap[i].weight:
+    while i > 0 and self.heap[self.father(i)].weight > self.heap[i].weight:
       j = self.father(i)
       aux = self.heap[j]
       self.heap[j] = self.heap[i]
@@ -132,8 +132,9 @@ class Dijkstra(object):
     self.pred = []
 
     self.queue = CustomHeap();
-    for x in d.items():
+    for x in d:
       self.cost.append(float('inf'))
+      self.pred.append(None)
       self.queue.insert_heap(CustomKey(x, float('inf')))
 
     self.cost[s] = 0.0
@@ -145,7 +146,7 @@ class Dijkstra(object):
       if u.weight == float('inf'):
         break
       else:
-        for arc in d[u]:
+        for arc in d[u.vertex]:
           self._relax(arc)
 
   def _relax(self, a: Arc):
@@ -157,6 +158,31 @@ class Dijkstra(object):
       self.pred[v] = u
       self.queue.change_key(v, self.cost[v])
 
+  def hasPathTo(self, v):
+    return self.cost[v] < float('inf')
+
+  def pathCost(self, v):
+    return self.cost[v]
+
 
 if __name__ == "__main__":
-  print('oi')
+  n_pontos_list = list(range(int(input())))
+
+  digraph = dict.fromkeys(n_pontos_list)
+  graph_handler = DigraphHandler()
+
+  for u in digraph:
+    digraph[u] = []
+
+  n_corredores = int(input())
+
+  for x in range(n_corredores):
+    a, b, c = input().split()
+    graph_handler.insert_arc(digraph, (int(a), int(b)), float(c))
+
+  origem, destino = map(int, input().split())
+
+  dijkstra = Dijkstra(digraph, origem)
+
+  print(dijkstra.cost)
+  print(dijkstra.pred)
